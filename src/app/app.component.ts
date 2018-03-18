@@ -16,6 +16,59 @@ export class AppComponent {
   private end : Date
   private runningDate: Date
   private pintar = false
+
+  public crear_calendario() {
+    if(!this.numberDays) {
+      return
+    }
+    this.meses.length = 0
+    var stringStartDate = this.startDate.split('-')
+    this.start = new Date(stringStartDate[0], +stringStartDate[1] - 1, stringStartDate[2])
+    this.runningDate = new Date(stringStartDate[0], +stringStartDate[1] - 1, stringStartDate[2])
+    this.end = new Date(stringStartDate[0], +stringStartDate[1] - 1, stringStartDate[2])
+    this.end.setDate(this.end.getDate() + this.numberDays)
+    var condition = true
+    console.log(this.start, this.end)
+    while (condition) {
+      let modeloMes = this.crear_mes(this.runningDate)
+      let newMes = this.llenar_fechas_mes(modeloMes, this.runningDate)
+      this.meses.push(newMes)
+      if(this.runningDate.getFullYear() == this.end.getFullYear() && this.runningDate.getMonth() == this.end.getMonth()) {
+        condition = false
+      }
+      this.runningDate.setMonth(this.runningDate.getMonth() + 1)
+    }
+    console.log(this.meses)
+  }
+
+  private llenar_fechas_mes (modeloMes, date: Date) {
+    let anio = date.getFullYear()
+    let mes = date.getMonth()
+    let dias = new Date(anio, mes + 1, 0).getDate();
+    let fila = 0
+    
+    for (let dia = 1; dia <= dias; dia++) {
+      let orden = new Date(new Date(anio, mes).setDate(dia)).getDay()
+      if(this.start.getMonth() == mes && this.start.getDate() == dia && this.start.getFullYear() == anio) {
+        this.pintar = true
+      }
+      if(this.pintar) {
+        modeloMes.semanas[fila][orden].fecha = dia
+      } else if (modeloMes.semanas[fila][orden].color != 'yellow'){
+        modeloMes.semanas[fila][orden].color = 'grey'
+      }
+      if(this.end.getMonth() == mes && this.end.getDate() == dia && this.end.getFullYear() == anio) {
+        this.pintar = false
+      }
+      if(orden == 6) {
+        fila++
+      }
+      if(dia == dias && orden != 6) {
+        fila++
+      }
+    }
+    return modeloMes
+  }
   
   private crear_mes(fecha : Date ) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
