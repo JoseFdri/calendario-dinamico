@@ -28,7 +28,6 @@ export class AppComponent {
     this.end = new Date(stringStartDate[0], +stringStartDate[1] - 1, stringStartDate[2])
     this.end.setDate(this.end.getDate() + this.numberDays)
     var condition = true
-    console.log(this.start, this.end)
     while (condition) {
       let modeloMes = this.crear_mes(this.runningDate)
       let newMes = this.llenar_fechas_mes(modeloMes, this.runningDate)
@@ -38,7 +37,6 @@ export class AppComponent {
       }
       this.runningDate.setMonth(this.runningDate.getMonth() + 1)
     }
-    console.log(this.meses)
   }
 
   private llenar_fechas_mes (modeloMes, date: Date) {
@@ -69,7 +67,7 @@ export class AppComponent {
     }
     return modeloMes
   }
-  
+
   private crear_mes(fecha : Date ) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
