@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Start Date</label>
+        <input type="date" class="form-control" id="date" [(ngModel)]="startDate" >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Number of days</label>
+        <input type="number" class="form-control" id="days" [(ngModel)]="numberDays">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Country code</label>
+        <input type="text" class="form-control" id="country" placeholder="US" [(ngModel)]="countryCode">
+      </div>
+      <div class="btn btn-primary" (click)="crear_calendario()">Show</div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-lg-4 mb-3" *ngFor="let mes of meses">
+      <div class="calendar d-flex flex-column">
+        <div class="header w-100 d-flex d-flex justify-content-around">
+          <div class="day-tag">S</div>
+          <div class="day-tag">M</div>
+          <div class="day-tag">T</div>
+          <div class="day-tag">W</div>
+          <div class="day-tag">T</div>
+          <div class="day-tag">F</div>
+          <div class="day-tag">S</div>
+        </div>
+        <div class="month-description w-100 d-flex justify-content-center">
+          {{mes.nombre}}
+        </div>
+        <div class="row-month w-100 d-flex justify-content-between" *ngFor="let semana of mes.semanas">
+          <div class="date-box d-flex align-items-center justify-content-center"
+            [class.green]="dia.color == 'green'" 
+            [class.yellow]="dia.color == 'yellow'" 
+            [class.grey]="dia.color == 'grey'" 
+            *ngFor="let dia of semana">
+            {{dia.fecha}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
