@@ -1,6 +1,6 @@
-# Calendar
+# Date calculator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+This app will help you to calculate what date will be in certain number of days
 
 # Instalation
 Run 'npm install' to download all dependencies
@@ -9,10 +9,9 @@ Run 'npm install' to download all dependencies
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## requirements that have been not implemented
-
-Country Code (I didn't understand the functionality )
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Demo 
+https://josefdri.github.io/date-calculator-demo/
